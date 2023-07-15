@@ -1,0 +1,30 @@
+.card{
+    width: 100%; /* Occupe un quart de l'espace disponible */
+    height: 100%;
+    background: linear-gradient(0deg, rgba(44,34,195,1) 0%, rgba(0,68,110,1) 75%);
+    box-shadow: black 0px 0px 4px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: wheat;
+    transition: transform 0.5s ease;
+}
+
+.card:hover{
+    background: linear-gradient(0deg, rgba(34,143,195,1) 0%, rgba(0,68,110,1) 75%);
+    box-shadow: black 0px 0px 10px;
+}
+
+.card.rotated {
+    transform: rotateY(180deg);
+    background: linear-gradient(0deg, rgba(195,34,183,1) 0%, rgba(0,151,255,1) 100%);
+
+  }
+
+.cards-show {
+    transition: transform 0.5s ease;
+    transform: rotateY(-180deg);
+    
+    }

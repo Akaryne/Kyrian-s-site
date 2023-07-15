@@ -1,0 +1,10 @@
+
+
+
+.board{
+    height: 80%;
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Crée 4 colonnes de largeur égale */
+    gap: 20px; /* Espace de 20px entre les cartes */
+}
