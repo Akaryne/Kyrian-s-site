@@ -24,7 +24,6 @@ function Board({ cardsData , handleScoreChange, handleCout}){
   }
 
   useEffect(() => {
-    console.log(flippedCards);
     if (flippedCards.length === 2) {
       const card1 = cards.find((card) => card.id === flippedCards[0]);
       const card2 = cards.find((card) => card.id === flippedCards[1]);

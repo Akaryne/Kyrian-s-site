@@ -1,0 +1,26 @@
+@media (min-width: 768px) {
+    .board-demineur{
+        box-shadow: #0000009e 0px 0px 10px;
+        height: 80%;
+        width: 25%;
+        display: grid;
+        grid-template-columns: repeat(8, 1fr); /* Crée 4 colonnes de largeur égale */
+        grid-template-rows: repeat(12,1fr);
+        gap: 0px; /* Espace de 0px entre les cartes */
+    }
+
+
+
+}
+
+@media (max-width: 767px) {
+    .board-demineur{
+        box-shadow: #0000009e 0px 0px 10px;
+        height: 80%;
+        width: 80%;
+        display: grid;
+        grid-template-columns: repeat(8, 1fr); /* Crée 4 colonnes de largeur égale */
+        grid-template-rows: repeat(12,1fr);
+        gap: 0px; /* Espace de 0px entre les cartes */
+    }
+}

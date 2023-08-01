@@ -1,0 +1,186 @@
+/* Styles pour les ordinateurs */
+@media (min-width: 768px) {
+
+    .game{
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(45deg, rgba(255, 79, 132, 0.418) 8%, rgba(253,68,29,0.12138728323699421) 45%, rgba(252, 69, 69, 0.363) 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .head{
+        width: 80%;
+        background: #FFB876;
+        border-radius: 10px; 
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        display: grid;
+        align-items: center;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: repeat(1,auto);
+        grid-template-areas: "un deux trois";
+    }
+
+    .head > .un{
+        padding: 0;
+        margin: 10px 0px 10px 20px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+
+        color: #000;
+        text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.342);
+        font-family: Inter;
+        font-size: 25px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 109.023%; /* 27.256px */
+        letter-spacing: 10.625px; 
+    }
+
+    .head > .deux{
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        background:rgba(255, 255, 255, 0.479);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        color: #000;
+        font-family: Inter;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 109.023%; /* 21.805px */
+        letter-spacing: 2px; 
+
+    }
+
+    .head > .trois{
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        background:rgba(255, 255, 255, 0.726);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        color: #000;
+        font-family: Inter;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 109.023%; /* 21.805px */
+        letter-spacing: 2px; 
+    }
+
+    .container{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+
+}
+
+@media (max-width: 767px) {
+
+    .game{
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(45deg, rgba(255, 79, 132, 0.418) 8%, rgba(253,68,29,0.12138728323699421) 45%, rgba(252, 69, 69, 0.363) 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .head{
+        width: 100%;
+        background: #FFB876;
+        border-radius: 10px; 
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        display: grid;
+        align-items: center;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: repeat(1,auto);
+        grid-template-areas: "un deux trois";
+    }
+
+    .head > .un{
+        padding: 0;
+        margin: 10px 0px 10px 20px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        border-radius: 10px; 
+        color: #000;
+        text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.342);
+        font-family: Inter;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 109.023%; /* 27.256px */
+        letter-spacing: 4px; 
+    }
+
+    .head > .deux{
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        background:rgba(255, 255, 255, 0.479);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px 0px 0px 10px; 
+        color: #000;
+        font-family: Inter;
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 109.023%; /* 21.805px */
+        letter-spacing: 2px; 
+
+    }
+
+    .head > .trois{
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        background:rgba(255, 255, 255, 0.479);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0px 10px 10px 0px;
+        color: #000;
+        font-family: Inter;
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 109.023%; /* 21.805px */
+        letter-spacing: 2px; 
+    }
+
+    .container{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+
+}

@@ -1,0 +1,155 @@
+/* Styles pour les ordinateurs */
+@media (min-width: 768px) {
+
+    .container-header{
+        height: 10%;
+        width: 100%;
+        background: #C03737;
+        border-radius: 0px 0px 10px 10px;
+        box-shadow: #00000091 3px 3px 10px;
+
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(6,1fr);
+        grid-template-rows: repeat(1,100%);
+        grid-template-areas: "logo logo searchBar searchBar searchBar profile";
+    }
+
+    .boxH{
+        display: flex;
+        justify-content: center;
+        justify-items: center;
+    }
+
+    .logo{
+        grid-area: logo;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        margin-left: 30px;
+    }
+
+    .logo > h2 {
+        color: #FFF;
+        text-align: center;
+        text-shadow: #722121 3px 3px 0px ;
+        font-family: Inter;
+        font-size: 3vw;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        letter-spacing: 4px; 
+    }
+  
+    .searchBar{
+        grid-area: searchBar;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+
+    .searchBar > input{
+        width: 100%;
+        height: 50%;
+        outline: none;
+        border-radius: 8px;
+        box-shadow: rgba(0, 0, 0, 0.507) 2px 2px 10px;
+        text-align: center;
+        font-size: larger;
+        border:none;
+        background: #ffb2b2a2;
+    }
+    .searchBar > input:hover{
+        background: rgb(247, 218, 218);
+    }
+
+
+    .profile{
+        grid-area: profile;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+}
+
+@media (max-width: 767px) {
+
+        .container-header{
+            height: 10%;
+            width: 100%;
+            background: #C03737;
+            border-radius: 0px 0px 10px 10px;
+            box-shadow: #00000091 3px 3px 10px;
+
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(5,1fr);
+            grid-template-rows: repeat(1,100%);
+            grid-template-areas: "logo logo searchBar searchBar profile";
+        }
+    
+        .boxH{
+            display: flex;
+            justify-content: center;
+            justify-items: center;
+        }
+
+        .logo{
+            grid-area: logo;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            margin-left: 10px;
+        }
+
+        .logo > h2 {
+            color: #FFF;
+            text-align: center;
+            text-shadow: #722121 3px 3px 0px ;
+            font-family: Inter;
+            font-size: 35px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            letter-spacing: 4px; 
+        }
+      
+        .searchBar{
+            grid-area: searchBar;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .searchBar > input{
+            width: 100%;
+            height: 50%;
+            outline: none;
+            border-radius: 8px;
+            box-shadow: rgba(0, 0, 0, 0.507) 2px 2px 10px;
+            text-align: center;
+            font-size: smaller;
+            border:none;
+            background: #ffb2b2a2;
+        }
+
+        .searchBar > input:hover{
+            background: rgb(247, 218, 218);
+        }
+
+    
+        .profile{
+            grid-area: profile;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile > .profileI{
+            display: none;
+        }  
+    
+}
