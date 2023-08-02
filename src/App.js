@@ -8,7 +8,7 @@ import ReactGA from 'react-ga';
 
 
 import {BrowserRouter,Routes,Route} from "react-router-dom";
-import './app.css'
+import './App.css'
 
 ReactGA.initialize('G-J06PTETP08');
 

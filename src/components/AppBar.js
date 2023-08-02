@@ -35,6 +35,19 @@ function AppBar() {
         setOpenSignInDialog(true)
     }
 
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://game-zone-f7b9ede0718d.herokuapp.com/logout');
+        if (!response.ok) {
+          throw new Error('Erreur logout');
+        }
+        const jsonData = await response.json();
+        console.log(jsonData)
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     return(
             <div className='container-header'>
 
@@ -75,6 +88,7 @@ function AppBar() {
                         <MenuItem onClick={handleCloseInformation}>A propos</MenuItem>
                         <MenuItem onClick={handleLoginDialog}>Login</MenuItem>
                         <MenuItem onClick={handleSignInDialog}>Sign in</MenuItem>
+                        <MenuItem onClick={()=>fetchData()}>logout</MenuItem>
                     </Menu>
                 </div>
                
@@ -106,23 +120,30 @@ const LoginDialog = ({ open, onQuit }) => {
   
 
       // Effectuer la requête POST vers l'endpoint /add
-      fetch('https://game-zone-f7b9ede0718d.herokuapp.com/subscribe', {
+      fetch('https://game-zone-f7b9ede0718d.herokuapp.com/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(dataToSend),
       })
-        .then((response) => response.json())
-        .then(() => {
-            setError(false)
+        .then((response) => {
+          if (!response.ok) {
+            // Si la requête a échoué (status 4xx ou 5xx), on lance une erreur
+            throw new Error('Erreur lors de la requête POST');
+          }
+          return response.json(); // Renvoie les données de la réponse au format JSON
+        })
+        .then((data) => {
+          // Traiter les données de la réponse ici si nécessaire
+          setError(false);
+          onQuit();
         })
         .catch((error) => {
           console.error('Erreur lors de la requête POST :', error);
-          setError(true)
+          setError(true);
           // Gérer les erreurs éventuelles ici
         });
-
     };
   
     return (
@@ -137,22 +158,22 @@ const LoginDialog = ({ open, onQuit }) => {
           letterSpacing:' 4px',
       }}>Login</DialogTitle>
         <DialogContent>
-          <DialogContentText>
+          <DialogContentText sx={{p:2}}>
             <Paper elevation={3}>
-            <TextField
-                required
-                id="outlined-required"
-                label="Pseudo"
-                placeholder="Pseudo"
-                onChange={(e) => setLogin(e.target.value)}
-            />
-            <TextField
-                required
-                id="outlined-required"
-                label="Password"
-                placeholder="password"
-                onChange={(e) => setPassword(e.target.value)}
-            />
+              <TextField sx = {{m:2}}
+                  required
+                  id="outlined-required"
+                  label="Pseudo"
+                  placeholder="Pseudo"
+                  onChange={(e) => setLogin(e.target.value)}
+              />
+              <TextField sx = {{m:2}}
+                  required
+                  id="outlined-required"
+                  label="Password"
+                  placeholder="password"
+                  onChange={(e) => setPassword(e.target.value)}
+              />
             </Paper>
             {error ? <Typography sx={{
                 textAlign: 'center',
@@ -192,21 +213,28 @@ const LoginDialog = ({ open, onQuit }) => {
   
 
       // Effectuer la requête POST vers l'endpoint /add
-      fetch('https://game-zone-f7b9ede0718d.herokuapp.com/subscribe', {
+      fetch('https://game-zone-f7b9ede0718d.herokuapp.com/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(dataToSend),
       })
-        .then((response) => response.json())
-        .then(() => {
-            setError(false)
-            onQuit()
+        .then((response) => {
+          if (!response.ok) {
+            // Si la requête a échoué (status 4xx ou 5xx), on lance une erreur
+            throw new Error('Erreur lors de la requête POST');
+          }
+          return response.json(); // Renvoie les données de la réponse au format JSON
+        })
+        .then((data) => {
+          // Traiter les données de la réponse ici si nécessaire
+          setError(false);
+          onQuit();
         })
         .catch((error) => {
-          console.error('Erreur lors de la requête POST :', error);
-          setError(true)
+          console.error('Utilisateur', error);
+          setError(true);
           // Gérer les erreurs éventuelles ici
         });
 
@@ -223,23 +251,23 @@ const LoginDialog = ({ open, onQuit }) => {
           fontWeight: '600',
           letterSpacing:' 4px',
       }}>Sign in</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
+        <DialogContent >
+          <DialogContentText sx={{p:2}}>
             <Paper elevation={3}>
-            <TextField
-                required
-                id="outlined-required"
-                label="Pseudo"
-                placeholder="pseudo"
-                onChange={(e) => setLogin(e.target.value)}
-            />
-            <TextField
-                required
-                id="outlined-required"
-                label="Password"
-                placeholder="password"
-                onChange={(e) => setPassword(e.target.value)}
-            />
+              <TextField sx = {{m:2}}
+                  required
+                  id="outlined-required"
+                  label="Pseudo"
+                  placeholder="pseudo"
+                  onChange={(e) => setLogin(e.target.value)}
+              />
+              <TextField sx = {{m:2}}
+                  required
+                  id="outlined-required"
+                  label="Password"
+                  placeholder="password"
+                  onChange={(e) => setPassword(e.target.value)}
+              />
             </Paper>
             {error ? <Typography sx={{
                 textAlign: 'center',
@@ -255,7 +283,7 @@ const LoginDialog = ({ open, onQuit }) => {
             fontSize: '16px',
             height:'100%'
           }}>
-            Login
+            Sign in
           </Button>
         </DialogActions>
       </Dialog>
