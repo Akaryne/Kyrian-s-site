@@ -11,6 +11,7 @@ import { Block } from "@mui/icons-material";
 function Home() {
     const [animateIndex, setAnimateIndex] = useState([]);
     const [counter, setCounter] = useState(0);
+    const [user, setUser] = useState(null);
     
   
     const jeuxData = [
@@ -20,11 +21,27 @@ function Home() {
       { title: 'Coming soon...', link: '/game4', className: 'jeux4',image : null  ,animate: false },
     ];
 
-
+    useEffect(() => {
+      // Effectuez la requête Fetch vers la route '/'
+      fetch('https://game-zone-f7b9ede0718d.herokuapp.com/', {
+        method: 'GET',
+        credentials: 'include', // Inclure les cookies pour l'authentification
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          // Mettez à jour l'état de l'utilisateur en fonction de la réponse du serveur
+          setUser(data);
+        })
+        .catch((error) => {
+          console.error('Erreur lors de la requête Fetch :', error);
+        });
+    }, []);
     
 
+    useEffect(() => {
+      console.log(user)
+    },[user])
 
-  
     useEffect(() => {
       const timer = setTimeout(() => {
         setCounter(counter + 1);

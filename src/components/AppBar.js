@@ -80,6 +80,8 @@ function AppBar() {
                         anchorEl={anchorElInformation}
                         open={open}
                         onClose={handleCloseInformation}
+                        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                         MenuListProps={{
                         'aria-labelledby': 'basic-button',
                         }}

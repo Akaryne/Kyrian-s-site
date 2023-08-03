@@ -188,7 +188,6 @@ const LeaderBoard = ({ open, onQuit,data,fetchData,minMouvement, succesGame,setS
               </TableHead>
               <TableBody>
                 {dataFiltered.map((elem,index)=>{
-                  console.log('index est : ',index)
                   return(
                   <TableRow key ={elem.id}>
                     <TableCell style={{
