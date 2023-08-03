@@ -2,6 +2,7 @@ import React,{useEffect} from 'react';
 import Game from './components/memory/Game';
 import Home from './components/Home';
 import Demineur from './components/demineur/Demineur'
+
 import ReactGA from 'react-ga';
 
 // Initialize Google Analytics with your tracking ID
@@ -21,13 +22,16 @@ const App = () => {
   }, []);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/memory" element={<Game />} />
-        <Route path="/demineur" element={<Demineur />} />
-      </Routes>
-    </BrowserRouter>
+
+      <BrowserRouter>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/memory" element={<Game />} />
+          <Route path="/demineur" element={<Demineur />} />
+        </Routes>
+      </BrowserRouter>
+
+
   );
 };
 

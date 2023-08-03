@@ -1,17 +1,18 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import './Home.css'
 
 import AppBar from './AppBar'
 import { Link } from "react-router-dom";
 import { Container } from "@mui/material";
 import Slide from '@mui/material/Slide';
-import { Block } from "@mui/icons-material";
+import { UserContext } from "../utils/UserContext";
 
 
 function Home() {
+    const {setUser} = useContext(UserContext)
     const [animateIndex, setAnimateIndex] = useState([]);
     const [counter, setCounter] = useState(0);
-    const [user, setUser] = useState(null);
+    const [login, setLogin] = useState(null);
     
   
     const jeuxData = [
@@ -30,17 +31,13 @@ function Home() {
         .then((response) => response.json())
         .then((data) => {
           // Mettez à jour l'état de l'utilisateur en fonction de la réponse du serveur
-          setUser(data);
+          setUser(data)
         })
         .catch((error) => {
           console.error('Erreur lors de la requête Fetch :', error);
         });
     }, []);
     
-
-    useEffect(() => {
-      console.log(user)
-    },[user])
 
     useEffect(() => {
       const timer = setTimeout(() => {

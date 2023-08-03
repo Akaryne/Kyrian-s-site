@@ -1,11 +1,13 @@
-import React,{useState} from "react";
+import React,{useState, useContext} from "react";
 import { Navigate } from 'react-router-dom';
+
 import './AppBar.css'
 
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
 import DehazeOutlinedIcon from '@mui/icons-material/DehazeOutlined';
 import { Button, Icon, Menu, MenuItem, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Paper,TableContainer, Typography,TextField } from "@mui/material";
+import { UserContext } from "../utils/UserContext";
 
 
 
@@ -14,6 +16,8 @@ import { Button, Icon, Menu, MenuItem, Dialog, DialogActions, DialogContent, Dia
 
 function AppBar() {
 
+
+    const {user} = useContext(UserContext)
     const [anchorElInformation, setAnchorElInformation] = useState(null);
     const [redirectToHome, setRedirectToHome] = useState(false)
     const [openLoginDialog, setOpenLoginDialog] = useState(false)
@@ -75,7 +79,9 @@ function AppBar() {
                         onClick={handleClickInformation}>
                         <DehazeOutlinedIcon sx={{ fontSize: 40, color:'#ffe6e6'}}/>
                     </Button>
-                    <Menu
+                    
+                      {user ? (
+                        <Menu
                         id="basic-menu"
                         anchorEl={anchorElInformation}
                         open={open}
@@ -85,13 +91,32 @@ function AppBar() {
                         MenuListProps={{
                         'aria-labelledby': 'basic-button',
                         }}
-                    >
+                      >
+                        <MenuItem onClick={handleCloseInformation}>Contact</MenuItem>
+                        <MenuItem onClick={handleCloseInformation}>A propos</MenuItem>
+                        <MenuItem onClick={()=>fetchData()}>logout</MenuItem>
+                      </Menu>
+
+                      ) : (
+                      <Menu
+                        id="basic-menu"
+                        anchorEl={anchorElInformation}
+                        open={open}
+                        onClose={handleCloseInformation}
+                        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                        MenuListProps={{
+                        'aria-labelledby': 'basic-button',
+                        }}
+                      >
                         <MenuItem onClick={handleCloseInformation}>Contact</MenuItem>
                         <MenuItem onClick={handleCloseInformation}>A propos</MenuItem>
                         <MenuItem onClick={handleLoginDialog}>Login</MenuItem>
                         <MenuItem onClick={handleSignInDialog}>Sign in</MenuItem>
-                        <MenuItem onClick={()=>fetchData()}>logout</MenuItem>
-                    </Menu>
+                      </Menu>
+                      )
+                    }
+                        
                 </div>
                
                 <LoginDialog open={openLoginDialog} onQuit={()=>setOpenLoginDialog(false)}></LoginDialog>
@@ -127,6 +152,7 @@ const LoginDialog = ({ open, onQuit }) => {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify(dataToSend),
       })
         .then((response) => {
@@ -138,6 +164,7 @@ const LoginDialog = ({ open, onQuit }) => {
         })
         .then((data) => {
           // Traiter les données de la réponse ici si nécessaire
+
           setError(false);
           onQuit();
         })
@@ -215,11 +242,12 @@ const LoginDialog = ({ open, onQuit }) => {
   
 
       // Effectuer la requête POST vers l'endpoint /add
-      fetch('https://game-zone-f7b9ede0718d.herokuapp.com/login', {
+      fetch('https://game-zone-f7b9ede0718d.herokuapp.com/subscribe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify(dataToSend),
       })
         .then((response) => {
