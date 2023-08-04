@@ -28,7 +28,14 @@ function Home() {
         method: 'GET',
         credentials: 'include', // Inclure les cookies pour l'authentification
       })
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            // Si la requête a échoué (status 4xx ou 5xx), on lance une erreur
+            setUser(null)
+            throw new Error('Erreur lors de la requête POST');
+          }
+          return response.json(); // Renvoie les données de la réponse au format JSON
+        })
         .then((data) => {
           // Mettez à jour l'état de l'utilisateur en fonction de la réponse du serveur
           setUser(data)

@@ -169,7 +169,7 @@ const LeaderBoard = ({ open, onQuit,data,fetchData,minMouvement, succesGame,setS
         letterSpacing:' 4px',
     }}>Tableau des scores</DialogTitle>
       <DialogContent>
-        <DialogContentText>
+
         <Paper elevation={3}>
           <TableContainer sx={{ maxHeight: '40vh' }}>
             <Table stickyHeader>
@@ -205,7 +205,7 @@ const LeaderBoard = ({ open, onQuit,data,fetchData,minMouvement, succesGame,setS
             </Table>
             </TableContainer>
           </Paper>
-        </DialogContentText>
+
       </DialogContent>
       <DialogActions style={{justifyContent:'space-around'}}>
         <TextField

@@ -17,7 +17,7 @@ import { UserContext } from "../utils/UserContext";
 function AppBar() {
 
 
-    const {user} = useContext(UserContext)
+    const {user, setUser} = useContext(UserContext)
     const [anchorElInformation, setAnchorElInformation] = useState(null);
     const [redirectToHome, setRedirectToHome] = useState(false)
     const [openLoginDialog, setOpenLoginDialog] = useState(false)
@@ -40,16 +40,29 @@ function AppBar() {
     }
 
     const fetchData = async () => {
-      try {
-        const response = await fetch('https://game-zone-f7b9ede0718d.herokuapp.com/logout');
-        if (!response.ok) {
-          throw new Error('Erreur logout');
-        }
-        const jsonData = await response.json();
-        console.log(jsonData)
-      } catch (error) {
-        console.error(error);
-      }
+        const response = await fetch('https://game-zone-f7b9ede0718d.herokuapp.com/logout', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+        })
+        .then((response) => {
+          if (!response.ok) {
+            // Si la requête a échoué (status 4xx ou 5xx), on lance une erreur
+            throw new Error('Erreur lors de la requête POST');
+          }
+          return response.json(); // Renvoie les données de la réponse au format JSON
+        })
+        .then((data) => {
+          // Traiter les données de la réponse ici si nécessaire
+          setUser(null)
+          setAnchorElInformation(null);
+        })
+        .catch((error) => {
+          console.error('Erreur lors de la requête POST :', error);
+          // Gérer les erreurs éventuelles ici
+        });   
     };
 
     return(
@@ -133,6 +146,7 @@ const LoginDialog = ({ open, onQuit }) => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(false)
+    const {setUser} = useContext(UserContext)
 
     
   
@@ -164,7 +178,7 @@ const LoginDialog = ({ open, onQuit }) => {
         })
         .then((data) => {
           // Traiter les données de la réponse ici si nécessaire
-
+          setUser(data.user)
           setError(false);
           onQuit();
         })
@@ -187,8 +201,7 @@ const LoginDialog = ({ open, onQuit }) => {
           letterSpacing:' 4px',
       }}>Login</DialogTitle>
         <DialogContent>
-          <DialogContentText sx={{p:2}}>
-            <Paper elevation={3}>
+            <Paper elevation={3} sx={{m:2}}>
               <TextField sx = {{m:2}}
                   required
                   id="outlined-required"
@@ -198,6 +211,7 @@ const LoginDialog = ({ open, onQuit }) => {
               />
               <TextField sx = {{m:2}}
                   required
+                  type="password"
                   id="outlined-required"
                   label="Password"
                   placeholder="password"
@@ -208,7 +222,7 @@ const LoginDialog = ({ open, onQuit }) => {
                 textAlign: 'center',
                 color: 'brown',
                 mt: 1,}}>Error login or password incorrect</Typography> : null}
-          </DialogContentText>
+
         </DialogContent>
         <DialogActions style={{justifyContent:'space-around'}}>
           
@@ -229,6 +243,7 @@ const LoginDialog = ({ open, onQuit }) => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(false)
+    const {setUser} = useContext(UserContext)
     
   
     const handleSubmit = (e) => {
@@ -259,6 +274,7 @@ const LoginDialog = ({ open, onQuit }) => {
         })
         .then((data) => {
           // Traiter les données de la réponse ici si nécessaire
+          setUser(data.user)
           setError(false);
           onQuit();
         })
@@ -282,8 +298,7 @@ const LoginDialog = ({ open, onQuit }) => {
           letterSpacing:' 4px',
       }}>Sign in</DialogTitle>
         <DialogContent >
-          <DialogContentText sx={{p:2}}>
-            <Paper elevation={3}>
+            <Paper elevation={3} sx={{m:2}}>
               <TextField sx = {{m:2}}
                   required
                   id="outlined-required"
@@ -303,7 +318,6 @@ const LoginDialog = ({ open, onQuit }) => {
                 textAlign: 'center',
                 color: 'brown',
                 mt: 1,}}>Pseudo are already used</Typography> : null}
-          </DialogContentText>
         </DialogContent>
         <DialogActions style={{justifyContent:'space-around'}}>
           
