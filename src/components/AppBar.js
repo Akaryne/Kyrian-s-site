@@ -6,6 +6,10 @@ import './AppBar.css'
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
 import DehazeOutlinedIcon from '@mui/icons-material/DehazeOutlined';
+import LogoutIcon from '@mui/icons-material/Logout';
+import LoginIcon from '@mui/icons-material/Login';
+import AddIcon from '@mui/icons-material/Add';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { Button, Icon, Menu, MenuItem, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Paper,TableContainer, Typography,TextField } from "@mui/material";
 import { UserContext } from "../utils/UserContext";
 
@@ -105,9 +109,8 @@ function AppBar() {
                         'aria-labelledby': 'basic-button',
                         }}
                       >
-                        <MenuItem onClick={handleCloseInformation}>Contact</MenuItem>
-                        <MenuItem onClick={handleCloseInformation}>A propos</MenuItem>
-                        <MenuItem onClick={()=>fetchData()}>logout</MenuItem>
+                        <MenuItem onClick={handleCloseInformation}><HelpOutlineIcon sx={{mr:2}}/>A propos</MenuItem>
+                        <MenuItem onClick={()=>fetchData()}><LogoutIcon sx={{mr:2}}/>logout</MenuItem>
                       </Menu>
 
                       ) : (
@@ -122,10 +125,9 @@ function AppBar() {
                         'aria-labelledby': 'basic-button',
                         }}
                       >
-                        <MenuItem onClick={handleCloseInformation}>Contact</MenuItem>
-                        <MenuItem onClick={handleCloseInformation}>A propos</MenuItem>
-                        <MenuItem onClick={handleLoginDialog}>Login</MenuItem>
-                        <MenuItem onClick={handleSignInDialog}>Sign in</MenuItem>
+                        <MenuItem onClick={handleCloseInformation}><HelpOutlineIcon sx={{mr:2}}/>A propos</MenuItem>
+                        <MenuItem onClick={handleLoginDialog}><LoginIcon sx={{mr:2}}/>Login</MenuItem>
+                        <MenuItem onClick={handleSignInDialog}><AddIcon sx={{mr:2}}/>Sign in</MenuItem>
                       </Menu>
                       )
                     }
@@ -308,6 +310,7 @@ const LoginDialog = ({ open, onQuit }) => {
               />
               <TextField sx = {{m:2}}
                   required
+                  type="password"
                   id="outlined-required"
                   label="Password"
                   placeholder="password"
