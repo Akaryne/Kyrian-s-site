@@ -141,7 +141,8 @@ const LeaderBoard = ({ open, onQuit,data,fetchData,minMouvement, succesGame,setS
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(dataToSend),
+      credentials: 'include',
+      body: JSON.stringify(dataToSend)
     })
       .then((response) => response.json())
       .then((data) => {

@@ -5,11 +5,11 @@ import AppBar from './AppBar'
 import { Link } from "react-router-dom";
 import { Container } from "@mui/material";
 import Slide from '@mui/material/Slide';
-import { UserContext } from "../utils/UserContext";
+
 
 
 function Home() {
-    const {setUser} = useContext(UserContext)
+    
     const [animateIndex, setAnimateIndex] = useState([]);
     const [counter, setCounter] = useState(0);
     const [login, setLogin] = useState(null);
@@ -22,29 +22,6 @@ function Home() {
       { title: 'Coming soon...', link: '/game4', className: 'jeux4',image : null  ,animate: false },
     ];
 
-    useEffect(() => {
-      // Effectuez la requête Fetch vers la route '/'
-      fetch('https://game-zone-f7b9ede0718d.herokuapp.com/', {
-        method: 'GET',
-        credentials: 'include', // Inclure les cookies pour l'authentification
-      })
-        .then((response) => {
-          if (!response.ok) {
-            // Si la requête a échoué (status 4xx ou 5xx), on lance une erreur
-            setUser(null)
-            throw new Error('Erreur lors de la requête POST');
-          }
-          return response.json(); // Renvoie les données de la réponse au format JSON
-        })
-        .then((data) => {
-          // Mettez à jour l'état de l'utilisateur en fonction de la réponse du serveur
-          setUser(data)
-        })
-        .catch((error) => {
-          console.error('Erreur lors de la requête Fetch :', error);
-        });
-    }, []);
-    
 
     useEffect(() => {
       const timer = setTimeout(() => {

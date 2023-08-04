@@ -213,7 +213,6 @@ const LoginDialog = ({ open, onQuit }) => {
               />
               <TextField sx = {{m:2}}
                   required
-                  type="password"
                   id="outlined-required"
                   label="Password"
                   placeholder="password"
@@ -310,7 +309,6 @@ const LoginDialog = ({ open, onQuit }) => {
               />
               <TextField sx = {{m:2}}
                   required
-                  type="password"
                   id="outlined-required"
                   label="Password"
                   placeholder="password"
