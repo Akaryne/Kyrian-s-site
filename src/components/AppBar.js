@@ -26,6 +26,7 @@ function AppBar() {
     const [redirectToHome, setRedirectToHome] = useState(false)
     const [openLoginDialog, setOpenLoginDialog] = useState(false)
     const [openSignInDialog, setOpenSignInDialog] = useState(false)
+    const [redirectToInformation, setRedirectToInformation] = useState(false)
     const open = Boolean(anchorElInformation);
 
     const handleClickInformation = (event) => {
@@ -34,6 +35,10 @@ function AppBar() {
     const handleCloseInformation = () => {
         setAnchorElInformation(null);
     };
+
+    const handleInformation = () => {
+      setRedirectToInformation(true)
+    }
 
     const handleLoginDialog = () => {
         setOpenLoginDialog(true)
@@ -109,7 +114,7 @@ function AppBar() {
                         'aria-labelledby': 'basic-button',
                         }}
                       >
-                        <MenuItem onClick={handleCloseInformation}><HelpOutlineIcon sx={{mr:2}}/>A propos</MenuItem>
+                        <MenuItem onClick={handleInformation}><HelpOutlineIcon sx={{mr:2}}/>A propos</MenuItem>
                         <MenuItem onClick={()=>fetchData()}><LogoutIcon sx={{mr:2}}/>logout</MenuItem>
                       </Menu>
 
@@ -125,7 +130,7 @@ function AppBar() {
                         'aria-labelledby': 'basic-button',
                         }}
                       >
-                        <MenuItem onClick={handleCloseInformation}><HelpOutlineIcon sx={{mr:2}}/>A propos</MenuItem>
+                        <MenuItem onClick={handleInformation}><HelpOutlineIcon sx={{mr:2}}/>A propos</MenuItem>
                         <MenuItem onClick={handleLoginDialog}><LoginIcon sx={{mr:2}}/>Login</MenuItem>
                         <MenuItem onClick={handleSignInDialog}><AddIcon sx={{mr:2}}/>Sign in</MenuItem>
                       </Menu>
@@ -140,6 +145,11 @@ function AppBar() {
                 {redirectToHome && (
                     <Navigate to="/" replace={true} />
                 )}
+
+                {redirectToInformation && (
+                  <Navigate to="/propos" replace={true} />
+                )}
+
             </div>
     )
 }export default AppBar

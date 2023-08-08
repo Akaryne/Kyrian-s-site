@@ -2,6 +2,7 @@ import React,{useEffect, useContext} from 'react';
 import Game from './components/memory/Game';
 import Home from './components/Home';
 import Demineur from './components/demineur/Demineur'
+import Propos from './components/propo/Propos'
 import { UserContext } from "./utils/UserContext";
 
 import ReactGA from 'react-ga';
@@ -56,6 +57,7 @@ const App = () => {
           <Route exact path="/" element={<Home />} />
           <Route path="/memory" element={<Game />} />
           <Route path="/demineur" element={<Demineur />} />
+          <Route path="/propos" element={<Propos />} />
         </Routes>
       </BrowserRouter>
 
