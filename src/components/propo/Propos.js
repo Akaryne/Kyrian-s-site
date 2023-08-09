@@ -1,26 +1,100 @@
-import React from "react"
-import { Container } from "@mui/material"
-import {motion, AnimatePresence} from "framer-motion"
+import React, { useRef } from "react";
+import { Box, Container } from "@mui/material";
+import { motion, useScroll, useTransform } from "framer-motion";
+
+function Propos() {
+  const refAbout = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: refAbout,
+    offset: ["end end", "end start"],
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
+  const x = useTransform(scrollYProgress, [0, 0.5], ["-10%", "10%"]);
 
 
-function Propos(){
 
-    const list = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]
+  const backgroundColor = useTransform(
+    scrollYProgress,
+    [0, 0.5],
+    ["#f00", "#00f"]
+  );
 
-    return(
-        <Container style={{maxWidth:"100%",padding:0,margin:0}}>
-            <AnimatePresence>
-            {list.map((elem)=>(
-                <motion.div key={elem} style={{display:'flex',justifyContent:'center'}}
-                initial={{ opacity: 0, x:-100 }}
-                whileInView={{ opacity: 1, x:0 }}
-                transition={{ duration: 0.7}}
-                animate={{ opacity: 0 }}
-                exit={{ opacity: 0, x:100 }}
-                ><motion.div whileHover={{scale:1.2}} style={{padding:32}}>test</motion.div></motion.div>
-            ))}
+  return (
+    <Container style={{ maxWidth: "100vw", padding: 0, margin: 0, overflowX: "hidden" }}>
+
+      <motion.div style={{x:300,y:300, position:"fixed"}}>
+        <Box sx={{width:"100px", height:"100px", background:"yellow"}}></Box>
+      </motion.div>
+
+      <motion.div>
+        <div ref={refAbout} style={{height: "100vh"}}>
+          Nothing to say
+        </div>
+      </motion.div>
+
+      
+    
+
+      <motion.div
+        
+        style={{
+          backgroundColor: backgroundColor,
+          height: "100vh",
+          opacity:opacity,
+        }}
+      >
+        <motion.div
+          style={{
+            zIndex:2,
+            height: "100%",
+            display: "flex",
+            justifyContent: "space-around",
+            flexDirection: "column",
+            x: x, // Corrected usage of x transformation
+          }}
+        >
+          <p style={{color:'black'}}>Nothing to say</p>
+          <p style={{color:'black'}}>AGAIN</p>
+          <p style={{color:'black'}}>AGAIN</p>
+          <p style={{color:'black'}}>AGAIN</p>
+          <p style={{color:'black'}}>AGAIN</p>
+          <p style={{color:'black'}}>AGAIN</p>
+          <p style={{color:'black'}}>AGAIN</p>
+          <p style={{color:'black'}}>AGAIN</p>
+        </motion.div>
+      </motion.div>
+
+      <div
+        style={{
+          height: "100vh",
+          background:'green'
+        }}
+      >
+        <div
+          style={{
+            height: "100%",
+            display: "flex",
+            justifyContent: "space-around",
+            flexDirection: "column",
             
-            </AnimatePresence>
-        </Container>
-    )
-}export default Propos
+          }}
+        >
+          <p style={{color:'black'}}>Nothing to say</p>
+          <p style={{color:'black'}}>AGAIN</p>
+          <p style={{color:'black'}}>AGAIN</p>
+          <p style={{color:'black'}}>AGAIN</p>
+          <p style={{color:'black'}}>AGAIN</p>
+          <p style={{color:'black'}}>AGAIN</p>
+          <p style={{color:'black'}}>AGAIN</p>
+          <p style={{color:'black'}}>AGAIN</p>
+        </div>
+      </div>
+
+
+    </Container>
+  );
+}
+
+export default Propos;
