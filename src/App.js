@@ -11,7 +11,7 @@ import ReactGA from 'react-ga';
 
 
 import {BrowserRouter,Routes,Route} from "react-router-dom";
-import './app.css'
+import './App.css'
 
 ReactGA.initialize('G-J06PTETP08');
 
@@ -39,7 +39,7 @@ const App = () => {
         console.log(data)
       })
       .catch((error) => {
-        console.error('Erreur lors de la requête Fetch :', error);
+        //console.error('Erreur lors de la requête Fetch :', error);
       });
   }, []);
 
