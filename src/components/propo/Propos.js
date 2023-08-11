@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from "react";
+import React,{useState, useEffect, useRef} from "react";
 import Header from "./Header";
 import About from "./About";
 import Work from "./Work";
@@ -61,6 +61,20 @@ function Propos() {
 
     const [stepScroll, setStepScroll] = useState(0)
 
+    const aboutSectionRef = useRef(null);
+    const workSectionRef = useRef(null);
+    const contactSectionRef = useRef(null);
+
+    const handleScrollIntoSection = (section) =>{
+        if(section===1){
+            aboutSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+        }else if(section===2){
+            workSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+        }else if(section===3){
+            contactSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
 
     useEffect(()=>{
         console.log('Actuellement au niveau ',stepScroll)
@@ -71,21 +85,21 @@ function Propos() {
     <ThemeProvider theme={theme}>
     <Container style={{ maxWidth: "100vw", padding: 0, margin: 0, overflowX: "hidden", overflowY:'scroll',height:"100vh",scrollSnapType:"y mandatory" }}>
 
-        <Header stepScroll={stepScroll}/>
+        <Header stepScroll={stepScroll} handleScrollIntoSection={handleScrollIntoSection}/>
 
       <motion.div style={{height:"100vh", scrollSnapAlign:"center",paddingTop:'5vh'}}>
         <Acceuil setStepScroll={setStepScroll}/>
       </motion.div>
 
-      <motion.div style={{height:"100vh", scrollSnapAlign:"center",paddingTop:'5vh'}}>
+      <motion.div ref={aboutSectionRef} style={{height:"100vh", scrollSnapAlign:"center",paddingTop:'5vh'}}>
         <About setStepScroll={setStepScroll}/>
       </motion.div>
 
-      <motion.div style={{height:"100vh", scrollSnapAlign:"center",paddingTop:'5vh'}}>
+      <motion.div ref={workSectionRef} style={{height:"100vh", scrollSnapAlign:"center",paddingTop:'5vh'}}>
         <Work setStepScroll={setStepScroll}/>
       </motion.div>
 
-      <motion.div style={{height:"100vh", scrollSnapAlign:"center",paddingTop:'5vh'}}>
+      <motion.div ref={contactSectionRef} style={{height:"100vh", scrollSnapAlign:"center",paddingTop:'5vh'}}>
         <Contact setStepScroll={setStepScroll}/>
       </motion.div>
 

@@ -2,34 +2,34 @@ import { Button, Container } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import React from 'react';
 
-function Header({ stepScroll }) {
+function Header({ stepScroll, handleScrollIntoSection }) {
   const theme = useTheme();
 
   const backgroundColor =
     stepScroll === '0'
       ? theme.palette.primary.main
       : stepScroll === '1'
-      ? theme.palette.complementary.main
+      ? theme.palette.primary.main
       : stepScroll === '2'
-      ? theme.palette.analogous.main
+      ? theme.palette.complementary.main
       : theme.palette.triadic.main;
 
   const backgroundColorButton =
     stepScroll === '0'
       ? theme.palette.primary.light
       : stepScroll === '1'
-      ? theme.palette.complementary.light
+      ? theme.palette.primary.light
       : stepScroll === '2'
-      ? theme.palette.analogous.light
+      ? theme.palette.complementary.light
       : theme.palette.triadic.light;
 
   const hoverBackgroundColor =
     stepScroll === '0'
       ? theme.palette.primary.dark
       : stepScroll === '1'
-      ? theme.palette.complementary.dark
+      ? theme.palette.primary.dark
       : stepScroll === '2'
-      ? theme.palette.analogous.dark
+      ? theme.palette.complementary.dark
       : theme.palette.triadic.dark;
 
   return (
@@ -48,13 +48,19 @@ function Header({ stepScroll }) {
         background: backgroundColor,
       }}
     >
-      <Button sx={{ height: '90%', ml: 1, mr: 1,background:backgroundColorButton, '&:hover': { backgroundColor: hoverBackgroundColor } }}>
+      <Button sx={{ height: '90%', ml: 1, mr: 1,background:backgroundColorButton, '&:hover': { backgroundColor: hoverBackgroundColor } }}
+      onClick={()=>{handleScrollIntoSection(1)}}
+      >
         about
       </Button>
-      <Button sx={{ height: '90%', ml: 1, mr: 1,background:backgroundColorButton, '&:hover': { backgroundColor: hoverBackgroundColor } }}>
+      <Button sx={{ height: '90%', ml: 1, mr: 1,background:backgroundColorButton, '&:hover': { backgroundColor: hoverBackgroundColor } }}
+      onClick={()=>{handleScrollIntoSection(2)}}
+      >
         work
       </Button>
-      <Button sx={{ height: '90%', ml: 1, mr: 1,background:backgroundColorButton, '&:hover': { backgroundColor: hoverBackgroundColor } }}>
+      <Button sx={{ height: '90%', ml: 1, mr: 1,background:backgroundColorButton, '&:hover': { backgroundColor: hoverBackgroundColor } }}
+      onClick={()=>{handleScrollIntoSection(3)}}
+      >
         contact
       </Button>
     </Container>
