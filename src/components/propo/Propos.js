@@ -8,7 +8,7 @@ import Acceuil from "./Acceuil"
 
 
 import { Box, Container } from "@mui/material";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform,useInView } from "framer-motion";
 
 import { Typography, createTheme, ThemeProvider} from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -68,13 +68,12 @@ function Propos() {
     const handleScrollIntoSection = (section) =>{
         if(section===1){
             aboutSectionRef.current.scrollIntoView({ behavior: 'smooth' });
-        }else if(section===2){
+        }if(section===2){
             workSectionRef.current.scrollIntoView({ behavior: 'smooth' });
-        }else if(section===3){
+        }if(section===3){
             contactSectionRef.current.scrollIntoView({ behavior: 'smooth' });
         }
     }
-
 
     useEffect(()=>{
         console.log('Actuellement au niveau ',stepScroll)

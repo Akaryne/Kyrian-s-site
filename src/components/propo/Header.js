@@ -2,35 +2,14 @@ import { Button, Container } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import React from 'react';
 
-function Header({ stepScroll, handleScrollIntoSection }) {
+function Header({ handleScrollIntoSection }) {
   const theme = useTheme();
 
-  const backgroundColor =
-    stepScroll === '0'
-      ? theme.palette.primary.main
-      : stepScroll === '1'
-      ? theme.palette.primary.main
-      : stepScroll === '2'
-      ? theme.palette.complementary.main
-      : theme.palette.triadic.main;
+  const backgroundColor = theme.palette.primary.main
 
-  const backgroundColorButton =
-    stepScroll === '0'
-      ? theme.palette.primary.light
-      : stepScroll === '1'
-      ? theme.palette.primary.light
-      : stepScroll === '2'
-      ? theme.palette.complementary.light
-      : theme.palette.triadic.light;
+  const backgroundColorButton = theme.palette.primary.light
 
-  const hoverBackgroundColor =
-    stepScroll === '0'
-      ? theme.palette.primary.dark
-      : stepScroll === '1'
-      ? theme.palette.primary.dark
-      : stepScroll === '2'
-      ? theme.palette.complementary.dark
-      : theme.palette.triadic.dark;
+  const hoverBackgroundColor = theme.palette.primary.dark
 
   return (
     <Container

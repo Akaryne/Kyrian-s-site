@@ -34,7 +34,7 @@ function Acceuil({setStepScroll}){
 
         style={{width:"100%", height:"100%", display:"flex", justifyContent:"center", alignItems:"center"}}>
             <motion.div whileHover={{scale:1.1}}>
-            <Card elevation={3} sx={{width:"30vw", height:"20vh", p:2}}>
+            <Card elevation={3} sx={{width:"40vw", height:"fitContent", p:2}}>
                 <Typography variant="h3">
                     Greetings! I'm <NameText>Kyrian Penillon,</NameText> 
                     <Typography variant="body1">
